@@ -131,3 +131,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://redis:6379/1')
 CELERY_RESULT_BACKEND = config('REDIS_URL', default='redis://redis:6379/1')
+
+AUTH_USER_MODEL = 'accounts.User'
