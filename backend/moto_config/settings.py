@@ -133,3 +133,17 @@ CELERY_BROKER_URL = config('REDIS_URL', default='redis://redis:6379/1')
 CELERY_RESULT_BACKEND = config('REDIS_URL', default='redis://redis:6379/1')
 
 AUTH_USER_MODEL = 'accounts.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ],
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,   # при обновлении access выдаёт и новый refresh
+}
