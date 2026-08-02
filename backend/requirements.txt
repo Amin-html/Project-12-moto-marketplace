@@ -11,3 +11,4 @@ django-redis
 drf-spectacular
 django-filter
 pytest-django
+Pillow
