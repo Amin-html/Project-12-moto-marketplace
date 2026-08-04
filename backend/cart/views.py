@@ -13,8 +13,7 @@ class CartDetailView(generics.RetrieveAPIView):
     def get_object(self):
         # get_or_create — вернёт существующую корзину юзера,
         # а если её ещё нет (первый визит) — создаст пустую
-        cart, _ = Cart.objects.get_or
-        _create(user=self.request.user)
+        cart, _ = Cart.objects.get_or_create(user=self.request.user)
         return cart
 
 
