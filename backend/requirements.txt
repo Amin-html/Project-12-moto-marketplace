@@ -13,3 +13,4 @@ django-filter
 pytest-django
 Pillow
 django-filter
+django-redis
