@@ -10,7 +10,6 @@ redis
 django-redis
 drf-spectacular
 django-filter
-pytest-django
+pytest
+pytest-django==4.9.0
 Pillow
-django-filter
-django-redis
