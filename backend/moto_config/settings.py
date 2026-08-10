@@ -136,9 +136,18 @@ CELERY_RESULT_BACKEND = config('REDIS_URL', default='redis://redis:6379/1')
 AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # это говорит DRF использовать drf-spectacular для генерации
+    # схемы API вместо старого встроенного генератора
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Moto Marketplace API',
+    'DESCRIPTION': 'API для маркетплейса мотоциклов, запчастей и тюнинга',
+    'VERSION': '1.0.0',
 }
 
 from datetime import timedelta

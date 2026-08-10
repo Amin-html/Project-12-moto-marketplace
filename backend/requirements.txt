@@ -13,3 +13,4 @@ django-filter
 pytest
 pytest-django==4.9.0
 Pillow
+drf-spectacular
