@@ -142,6 +142,9 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     # это говорит DRF использовать drf-spectacular для генерации
     # схемы API вместо старого встроенного генератора
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 12,
+    # 12 товаров на странице — удобное число для сетки 3х4 или 4х3 на фронте
 }
 
 SPECTACULAR_SETTINGS = {
@@ -170,3 +173,6 @@ CACHES = {
         },
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply@moto-marketplace.local'

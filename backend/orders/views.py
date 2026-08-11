@@ -5,6 +5,7 @@ from django.db import transaction
 from .models import Order, OrderItem, OrderStatusHistory
 from .serializers import OrderSerializer, CreateOrderSerializer
 from cart.models import Cart
+from .tasks import send_order_status_email
 
 
 class OrderListView(generics.ListAPIView):
@@ -90,5 +91,13 @@ class UpdateOrderStatusView(APIView):
         )
         # каждое обновление статуса — новая строка в истории,
         # это и создаёт таймлайн, который мы обсуждали
+
+
+        send_order_status_email.delay(order.id, new_status)
+        # .delay() — это и есть асинхронный вызов. Функция НЕ выполняется
+        # прямо тут и сейчас в этом же запросе — вместо этого задача
+        # кладётся в очередь Redis, а Celery-воркер (отдельный контейнер!)
+        # заберёт её и выполнит когда сможет. API отвечает клиенту
+        # мгновенно, не дожидаясь пока письмо реально отправится
 
         return Response(OrderSerializer(order).data)
